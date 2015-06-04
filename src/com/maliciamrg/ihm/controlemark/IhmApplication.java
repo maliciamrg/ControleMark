@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class LancementApplication extends JFrame {
+public class IhmApplication extends JFrame {
 
 	/**
 	 * 
@@ -39,7 +39,9 @@ public class LancementApplication extends JFrame {
 	private static Connection con;
 	private static JFrame fenetre;
 
-	public LancementApplication() {
+
+	
+	public IhmApplication() {
 		super("titre de l'application");
 
 		WindowListener l = new WindowAdapter() {
@@ -53,16 +55,23 @@ public class LancementApplication extends JFrame {
 		setVisible(true);
 	}
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+    public static void main(String[] args) {
 
 		param();
 
 		domainelist = new ArrayList<String>();
-		fenetre = new LancementApplication();
+		fenetre = new IhmApplication();
 		fenetre.setTitle("Rapport controle Mark");
 		fenetre.setSize(700, 1000);
+		
 
-		((LancementApplication) fenetre).majFenetre();
+		
+		try {
+			((IhmApplication) fenetre).majFenetre();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		// JLabel label = new JLabel("Bonjour tout le monde !");
 		// fenetre.getContentPane().add(label);
@@ -73,8 +82,6 @@ public class LancementApplication extends JFrame {
 	public void majFenetre() throws SQLException {
 		JPanel pannel = new JPanel();
 
-		String host = "jdbc:hsqldb:F:\\workspace\\ControleMark\\src\\HSQLDB";
-		Connection conn = DriverManager.getConnection(host);
 		
 		
 		
@@ -94,7 +101,7 @@ public class LancementApplication extends JFrame {
 
 		JTabbedPane onglets = new JTabbedPane(SwingConstants.TOP);
 
-		onglets = ((LancementApplication) fenetre).creationOnglets();
+		onglets = ((IhmApplication) fenetre).creationOnglets();
 
 		onglets.setOpaque(true);
 		pannel.add(onglets);
